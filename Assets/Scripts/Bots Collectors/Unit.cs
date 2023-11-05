@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     private float _speed = 2f;
     private Resources _resources;
     private Transform _target;
+    private Transform _transformBase;
 
     public Transform CollectPoint => _collectPoint;
 
@@ -18,6 +19,10 @@ public class Unit : MonoBehaviour
         if (_isGet == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+        }
+        else if (_isGet == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _transformBase.position, _speed * Time.deltaTime);
         }
     }
 
@@ -30,8 +35,8 @@ public class Unit : MonoBehaviour
         _target = _resources.transform;
     }
 
-    public void GiveResources(Transform target)
+    public void GetPositionBase(Transform transformBase)
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, _speed * Time.deltaTime);
+        _transformBase = transformBase;
     }
 }

@@ -55,16 +55,13 @@ public class Base : MonoBehaviour
 
     private void SendUnits()
     {
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < _units.Count && _numberResources < _resources.Count; i++)
         {
-            if (_units[i]._isFree && _resources[_numberResources]._isTaken == false && _numberResources < _resources.Count - 1)
+            if (_units[i]._isFree && _resources[_numberResources]._isTaken == false)
             {
                 _units[i].GetResources(_resources[_numberResources]);
+                _units[i].GetPositionBase(transform);
                 _numberResources++;
-            }
-            else if (_units[i]._isGet == true)
-            {
-                _units[i].GiveResources(transform);
             }
         }
     }
